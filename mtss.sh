@@ -87,7 +87,7 @@ process_num=0
 while :
 do
 log INFO "Starting a $process_name process..."
-process_num=`expr $process_num + 1`
+process_num=$((process_num+1))
 #process_num_left=`expr $limit - $process_num`
 process_num_left=$((limit-process_num))
 log INFO  "$process_name #$process_num started."
