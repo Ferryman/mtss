@@ -68,14 +68,15 @@ exit 0
 worker_processes()
 {
 
-process_num=`ps -ef | grep "/$process_name" | grep -v grep | grep -v $ScriptName | wc -l`
-process_num_left=`expr $limit - $process_num`
+process_num=`ps -ef | grep "$process_name" | grep -v grep | grep -v $ScriptName | wc -l`
+#process_num_left=`expr $limit - $process_num`
+process_num_left=$((limit-process_num))
 while [ $process_num_left -le 0 ]
 do
 log INFO  "$process_num $process processes running. Limit reached. Sleep 5s then check again."
 sleep 5
-process_num=`ps -ef | grep "/$process_name" | grep -v grep | grep -v $ScriptName | wc -l`
-process_num_left=`expr $limit - $process_num`
+process_num=`ps -ef | grep "$process_name" | grep -v grep | grep -v $ScriptName | wc -l`
+process_num_left=$((limit-process_num))
 done
 }
 
@@ -84,13 +85,12 @@ run()
 
 process_num=0
 
-limit=1
-idle_time=10
 while :
 do
 log INFO "Starting a $process_name process..."
 process_num=`expr $process_num + 1`
-process_num_left=`expr $limit - $process_num`
+#process_num_left=`expr $limit - $process_num`
+process_num_left=$((limit-process_num))
 log INFO  "$process_name #$process_num started."
 $sh $process_full_path >>$LogDir/$process_name.log 2>&1 && log INFO "$process_name #$process_num stopped" || log ERROR "$process_name #$process_num quit unexpectly" &
 log INFO  "$process_num $process_name processes running. $process_num_left $process_name processes left."
@@ -133,6 +133,10 @@ case $ext in
 	sh) sh=`which sh`;;
 	*) echo "error: no shell";exit 1;;
 esac
+
+limit=$3
+idle_time=$4
+
 
 while [ -n "$1" ]; do 
 case $1 in 
