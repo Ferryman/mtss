@@ -69,7 +69,6 @@ worker_processes()
 {
 
 process_num=`ps -ef | grep "$process_name" | grep -v grep | grep -v $ScriptName | wc -l`
-#process_num_left=`expr $limit - $process_num`
 process_num_left=$((limit-process_num))
 while [ $process_num_left -le 0 ]
 do
