@@ -11,7 +11,7 @@ help()
 cat <<EOF
 Options:
         -h	Display this screen (eg. nohup $ScriptDir/$ScriptName -h &)
-        -r 	Run processes (eg. nohup $ScriptDir/$ScriptName -r process_full_path $limit $idle_time &)      
+        -r 	Run processes (eg. nohup $ScriptDir/$ScriptName -r process_full_path limit idle_time &)      
 EOF
 exit 0
 }
