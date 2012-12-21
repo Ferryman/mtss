@@ -11,7 +11,7 @@ AdminEmail=`cat $DataDir/admin_emails|tr '\n' ','`
 
 log()
 {
-# write logs
+# write logs 
 # Usage: log "$_level" "$_msg"
 
 _level=$1
