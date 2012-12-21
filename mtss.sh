@@ -141,9 +141,9 @@ while [ -n "$1" ]; do
 case $1 in 
         -h) help;shift 1;; # function help is called 
         -test) test;shift 1;; #test functions
-	-r) run;shift 1;; 
-	-l) load $2 $3 $4;shift 4;;
-	--) shift;break;; # end of options 
+		-r) run;shift 1;; 
+		-l) load $2 $3 $4;shift 4;;
+		--) shift;break;; # end of options 
         -*) echo "error: no such option $1. -h for help";exit 1;;
         *) break;;
 esac
