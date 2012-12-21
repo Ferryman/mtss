@@ -3,11 +3,11 @@
 # Add shell envs 
 LogDir=/tmp/scripts/logs
 DataDir=/tmp/scripts/data
-IPAddress=`ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{print $1}'`
-process_name=`basename $0`
+IPAddress=`/sbin/ifconfig eth0 | /bin/grep 'inet addr:' | /usr/bin/cut -d: -f2 | /usr/bin/awk '{print $1}'`
+process_name=`/usr/bin/basename $0`
 
 # Admin email address
-AdminEmail=`cat $DataDir/admin_emails|tr '\n' ','`
+AdminEmail=`cat $DataDir/admin_emails|/usr/bin/tr '\n' ','`
 
 log()
 {
