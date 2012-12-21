@@ -11,7 +11,7 @@ AdminEmail=admin@foo.bar
 for LOG_FILE in $LogDir/*.log
 do
 	/bin/grep "ERROR" $LOG_FILE > $DataDir/mailbody
-	cat $DataDir/mailbody|/bin/mail -s "project mtss error report. $LOG_FILE on $IPAddress" 2>&1 &&  log INFO "purge_log.sh stopped" || log ERROR "purge_log.sh quit unexpectly"	 
+	cat $DataDir/mailbody|/bin/mail -s "project mtss error report. $LOG_FILE on $IPAddress" $AdminEmail 2>&1 &&  log INFO "purge_log.sh stopped" || log ERROR "purge_log.sh quit unexpectly"	 
 	>$LOG_FILE
 done
 
