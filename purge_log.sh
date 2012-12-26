@@ -23,7 +23,7 @@ echo "$(date)|$process_name|$_level|$_msg" >>$LogDir/$process_name.log
 
 for LOG_FILE in $LogDir/*.log
 do
-        /bin/grep "ERROR" $LOG_FILE > $DataDir/mailbody
+        /bin/grep -v "INFO" $LOG_FILE > $DataDir/mailbody
         if [[ -s $DataDir/mailbody ]]
         then
                 cat $DataDir/mailbody|/bin/mail -s "mtss error report. $LOG_FILE on $IPAddress" $AdminEmail 2>&1 &&  log INFO "$process_name stopped" || log ERROR "$process_name quit unexpectly"   
