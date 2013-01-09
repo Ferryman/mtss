@@ -27,7 +27,7 @@ do
         /bin/grep -v "INFO" $LOG_FILE > $DataDir/mailbody
         if [[ -s $DataDir/mailbody ]]
         then
-                cat $DataDir/mailbody|/bin/mail -s "mtss error report. `/usr/bin/basename $LOG_FILE` on $IPAddress" $AdminEmail 2>&1 &&  log INFO "$process_name stopped" || log ERROR "$process_name quit unexpectly"   
+                cat $DataDir/mailbody|/bin/mail -s "mtss error report. `basename $LOG_FILE` on $IPAddress" $AdminEmail 2>&1 &&  log INFO "$process_name stopped" || log ERROR "$process_name quit unexpectly"   
         fi
         >$LOG_FILE
 done
