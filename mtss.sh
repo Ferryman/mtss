@@ -68,13 +68,13 @@ exit 0
 worker_processes()
 {
 
-process_num=`pgrep -P $$ | wc -l`
+process_num=`pgrep -P $$ ${0##*/}| wc -l`
 process_num_left=$((limit-process_num))
 while [ $process_num_left -le 0 ]
 	do
 	log INFO  "$process_num $process_name processes running. Limit reached. Sleep $check_interval then check again."
 	sleep $check_interval
-	process_num=`pgrep -P $$ | wc -l`
+	process_num=`pgrep -P $$ ${0##*/}| wc -l`
 	process_num_left=$((limit-process_num))
 	done
 }
